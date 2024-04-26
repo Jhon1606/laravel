@@ -154,7 +154,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    // Aqui le ponemos true para que el sidebar del dashboard quede fijo
+    // Aquí le ponemos true para que el sidebar del dashboard quede fijo
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,

@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $services = Service::all();
+        // Definimos un arreglo para luego hacerle un foreach y recorrer todos los servicios
+        $array = [];
+        foreach ($services as $service){
+            $array[] = [
+                'id' => $service->id,
+                'name' => $service->name,
+                'description' => $service->description,
+                'price' => $service->price,
+                'client' => $service->clients
+            ];
+        }
+        // Le decimos que nos retorne el array en formato Json
+        return response()->json($array);
     }
 
     /**
@@ -22,6 +33,7 @@ class ServicesController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -29,7 +41,17 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $service = new Service();
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->price = $request->price;
+        $service->save();
+        $data = [
+            'message' => 'Servicio creado con éxito',
+            'client' => $service
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +59,12 @@ class ServicesController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        $data = [
+            'message' => "Detalles del servicio",
+            'service' => $service,
+            'client' => $service->clients
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -53,14 +80,38 @@ class ServicesController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $service->name = $request->name;
+        $service->description = $request->description;
+        $service->price = $request->price;
+        $service->save();
+        $data = [
+            'message' => 'Servicio actualizado con éxito',
+            'client' => $service
+        ];
+        return response()->json($data);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        $data = [
+            'message' => 'Servicio eliminado con éxito',
+            'service' => $service
+        ];
+        return response()->json($data);
+    }
+
+    public function clients(Request $request){
+        // Encontramos el servicio que se manda por la request
+        $service = Service::find($request->service_id);
+
+        // ?Mostramos el cliente que tiene el servicio
+        $clients = $service->clients;
+        $data = [
+            'message' => 'Clients fetched successfully',
+            'clients' => $clients
+        ];
+        return response()->json($data);
     }
 }
