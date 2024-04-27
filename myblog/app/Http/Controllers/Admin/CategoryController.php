@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]);
 
-        return redirect()->route('admin.categories.index')->with('info', 'La categoria se ha creado exitosamente');
+        return redirect()->route('admin.categories.index')->with('info', 'La categoría se ha creado exitosamente');
     }
 
     /**
@@ -73,15 +73,15 @@ class CategoryController extends Controller
         // //     // 'slug' => 'required|unique:categories'
         // ]);
         
-        // No deberia ser asi, pero será de manera temporal, debo utilizar el Category que recibo en el form
-        // Mientras utilizaré el que se envia por el request
+        // No debería ser asi, pero será de manera temporal, debo utilizar el Category que recibo en el form
+        // Mientras utilizaré el que se envía por el request
         $category = Category::find($request->editId);
 
         $category->name = $request->editName;
         $category->slug = Str::slug($request->editName);
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('info', 'La categoria se ha actualizado con exito');
+        return redirect()->route('admin.categories.index')->with('info', 'La categoría se ha actualizado con éxito');
     }
 
     /**
@@ -90,6 +90,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('info','La categoria se eliminó con exito');
+        return redirect()->route('admin.categories.index')->with('info','La categoría se eliminó con éxito');
     }
 }

@@ -9,9 +9,7 @@ use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tags = Tag::all();
@@ -22,8 +20,17 @@ class TagController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('admin.tags.create');
+    {   
+        $colors = [
+        'red' => 'Color rojo',
+        'yellow' => 'Color amarillo',
+        'green' => 'Color verde',
+        'blue' => 'Color azul',
+        'indigo' => 'Color indigo',
+        'purple' => 'Color morado',
+        'pink' => 'Color rosado',
+    ];
+        return response()->json($colors);
     }
 
     /**
@@ -37,7 +44,7 @@ class TagController extends Controller
             'color' => 'required'
         ]);
 
-        $tag = Tag::create([
+        Tag::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'color' => $request->color
@@ -60,6 +67,17 @@ class TagController extends Controller
     public function edit($tag)
     {
         $tag = Tag::find($tag);
+        $colors = [
+            'red' => 'Color rojo',
+            'yellow' => 'Color amarillo',
+            'green' => 'Color verde',
+            'blue' => 'Color azul',
+            'indigo' => 'Color indigo',
+            'purple' => 'Color morado',
+            'pink' => 'Color rosado',
+        ];
+        // Agregar los colores al tag antes de enviar la respuesta, de esta forma mandamos los 2 arrays en un solo dato
+        $tag->colors = $colors;
         return response()->json($tag);
     }
 
@@ -75,14 +93,14 @@ class TagController extends Controller
             'color' => 'required'
         ]);
 
-        $tag = Tag::find($request->editId);
+        $tag = Tag::find($request->id);
         
-        $tag->name = $request->editName;
-        $tag->slug = $request->slug;
+        $tag->name = $request->name;
+        $tag->slug = Str::slug($request->slug);
         $tag->color = $request->color;
         $tag->save();
 
-        return redirect()->route('admin.tags.index')->with('info', 'La etiqueta fue atualizada exitosamente');
+        return redirect()->route('admin.tags.index')->with('info', 'La etiqueta fue actualizada exitosamente');
     }
 
     /**
@@ -90,6 +108,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('admin.tags.index')->with('info','La etiqueta se eliminó con éxito');
     }
 }
