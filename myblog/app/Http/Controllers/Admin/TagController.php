@@ -81,9 +81,6 @@ class TagController extends Controller
         return response()->json($tag);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Tag $tag)
     {
         // unique significa único (el nombre tiene que ser único)
@@ -103,9 +100,7 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index')->with('info', 'La etiqueta fue actualizada exitosamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Tag $tag)
     {
         $tag->delete();

@@ -104,15 +104,20 @@
                     console.log(response.color);
                     $('#editId').val(response.id);
                     $('#editName').val(response.name);
+
+                    // Vaciar el select antes de agregar nuevas opciones
                     $('#editColor').empty();
-                    $('#editColor').val(response.color);
+
+                    // Agregar la opción del color actual en el campo select
+                    $('#editColor').append($('<option>', {
+                        value: response.color,
+                        // Acá accedemos a el arreglo de colores que traemos del controlador, Ej: 'blue' => 'Color azul'
+                        text: response.colors[response.color] 
+                    }));
 
                     // Acceder al array de colores desde la respuesta
                     var colors = response.colors;
                     console.log(colors);
-
-                    // Limpia el select antes de agregar nuevas opciones
-                    
                     
                     // Itera sobre los datos recibidos y agrega opciones al select
                     $.each(colors, function(key, value) { 
