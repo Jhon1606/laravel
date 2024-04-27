@@ -51,4 +51,14 @@
         </div>
     </div>
 </div>
+@include('admin.tags.partials.modal', [
+    'modalId' => 'modalCreateTag',
+    'modalLabel' => 'exampleModalLabel',
+    'modalTitle' => 'Crear Etiqueta',
+    'formAction' => route('admin.tags.store', $tag),
+    'fieldId' => 'id',
+    'fieldName' => 'name',
+    'selectId' => 'color',
+    'submitButton' => 'Crear etiqueta'
+])
 
