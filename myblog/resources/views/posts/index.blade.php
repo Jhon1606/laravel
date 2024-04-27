@@ -15,7 +15,7 @@
                                 en el archivo de migración create_post_tag_table que el post_id y el tag_id
                                 hace referencia a sus respectivos ids en las tablas posts y tags --}}
                             @foreach ($post->tags as $tag)
-                                <a href="" class="inline-block px-3 h-6 bg-{{ $tag->color }}-600 text-white rounded-full">{{$tag->name}}</a>
+                                <a href="{{route('posts.tag', $tag->id)}}" class="inline-block px-3 h-6 bg-{{ $tag->color }}-600 text-white rounded-full">{{$tag->name}}</a>
                             @endforeach
                         </div>
                         <h1 class="text-4xl text-while leading-8 font-bold">
