@@ -33,7 +33,7 @@
         <div class="mt-4">
             {{-- Con el metodo links() se hace una paginación y el posts trae todos los posts pero de 8 en 8
                 como se definió en el PostController con el metodo paginate(8) --}}
-            {{ $posts->links() }}
+            {{ $post->links() }}
         </div>
     </div>
 </x-app-layout>

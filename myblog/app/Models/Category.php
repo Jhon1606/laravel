@@ -11,8 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name','slug'];
 
-    // Con esto decimos que en la url no se muestre el id, sino el nombre de la categoria,
-    // Ej: "categories/categoria-de-prueba/edit"
+    // Con esto decimos que en la url no se muestre el id, sino el nombre de la categoría,
+    // Ej: "categories/categoría-de-prueba/edit"
     public function getRouteKeyName()
     {
         return 'slug';

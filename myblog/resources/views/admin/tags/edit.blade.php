@@ -2,6 +2,7 @@
     'modalId' => 'modalEditTag',
     'modalLabel' => 'exampleModalLabel',
     'modalTitle' => 'Editar Etiqueta',
+    'methodPut' => true,
     'formAction' => route('admin.tags.update', $tag),
     'fieldId' => 'editId',
     'fieldName' => 'editName',

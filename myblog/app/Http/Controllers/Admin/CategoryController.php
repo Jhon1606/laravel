@@ -84,9 +84,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('info', 'La categoría se ha actualizado con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Category $category)
     {
         $category->delete();

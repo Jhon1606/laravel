@@ -83,23 +83,14 @@ class TagController extends Controller
 
     public function update(Request $request, Tag $tag)
     {
-        // unique significa único (el nombre tiene que ser único)
-        $request->validate([
-            'name' => 'required:unique:tags',
-            // 'slug' => 'required:unique:tags'
-            'color' => 'required'
-        ]);
-
         $tag = Tag::find($request->id);
-        
         $tag->name = $request->name;
-        $tag->slug = Str::slug($request->slug);
+        $tag->slug = Str::slug($request->name);
         $tag->color = $request->color;
         $tag->save();
 
-        return redirect()->route('admin.tags.index')->with('info', 'La etiqueta fue actualizada exitosamente');
+        return redirect()->route('admin.tags.index')->with('info', 'La etiqueta se ha actualizado con éxito');
     }
-
     
     public function destroy(Tag $tag)
     {

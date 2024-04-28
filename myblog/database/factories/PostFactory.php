@@ -27,7 +27,7 @@ class PostFactory extends Factory
             'body' => $this->faker->text(2000),
             'status' => $this->faker->randomElement([1,2]),
             // Aca se llama a el modelo Category y accedemos a todos sus datos, 
-            // luego decimos que escoga un id random de la tabla Category, asi igual con User
+            // luego decimos que escoja un id random de la tabla Category, asi igual con User
             'category_id' => Category::all()->random()->id,
             'user_id' => User::all()->random()->id,
         ];

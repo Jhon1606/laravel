@@ -15,7 +15,7 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         // Creamos una variable llamada post y guardamos los 100 post creados con el factory
-        $posts = Post::factory(100)->create();
+        $posts = Post::factory(300)->create();
 
         // Luego hacemos un foreach, llamamos a el modelo image y luego el metodo factory para crear una imagen,
         // y le pasamos el id y el type recorriendo el arreglo

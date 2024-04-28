@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
 
-            // Aqui dice que user_id es una llave foranea y que esta relacionado con el id de la tabla users
+            // Aquí dice que user_id es una llave foránea y que esta relacionado con el id de la tabla users
             // y que si se elimina el usuario, se eliminaran todos los post de ese usuario (onDelete)
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
