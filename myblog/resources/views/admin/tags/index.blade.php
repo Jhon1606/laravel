@@ -10,11 +10,18 @@
 @stop
 
 @section('content')
-    @if (session('info'))
+    {{-- @if (session('info'))
         <div class="alert alert-success">
             <strong>{{session('info')}}</strong>
         </div>
-    @endif
+    @endif --}}
+    <script>
+        Swal.fire({
+            title: "The Internet?",
+            text: "That thing is still around?",
+            icon: "question"
+        });
+    </script>
     <div class="card">
         <div class="card-body">
             <table class="table table-striped">
@@ -65,6 +72,7 @@
 @stop
 
 @section('js')
+    <script src="{{ asset('resources/js/app.js')}}"></script>
     <script>
         $('#modalCrear').click( () => {
             // Realiza la petición Ajax para obtener los datos del controlador

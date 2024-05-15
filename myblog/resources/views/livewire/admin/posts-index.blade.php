@@ -21,11 +21,7 @@
                             <td>{{$post->id}}</td>
                             <td>{{$post->name}}</td>
                             <td width="10px">
-                                {{-- Se deja como post y no como post->id para que no retorne el id en la url si no el slug,
-                                    como se definió en el modelo Category con el metodo getRouteKeyName()--}}
-                                    <button onclick="modalEditPost({{$post->id}})" type="button" class="btn btn-primary btn-sm">
-                                        Editar
-                                    </button>
+                                <a href="{{route('admin.posts.edit', $post)}}" class="btn btn-primary btn-sm"> Editar </a>
                             </td>
                             <td width="10px">
                                 {{-- Para hacer el delete siempre se tendra que hacer dentro de un form, decirle que es metodo post

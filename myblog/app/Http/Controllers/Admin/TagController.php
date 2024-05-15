@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 
+
 class TagController extends Controller
 {
-
     public function index()
     {
         $tags = Tag::all();
@@ -49,7 +49,7 @@ class TagController extends Controller
             'slug' => Str::slug($request->name),
             'color' => $request->color
         ]);
-
+        
         return redirect()->route('admin.tags.index')->with('info', 'La etiqueta fue creada exitosamente');
     }
 
@@ -89,6 +89,8 @@ class TagController extends Controller
         $tag->color = $request->color;
         $tag->save();
 
+        // Establece el mensaje en la sesión flash
+       
         return redirect()->route('admin.tags.index')->with('info', 'La etiqueta se ha actualizado con éxito');
     }
     
